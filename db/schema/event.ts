@@ -20,3 +20,5 @@ export const event = sqliteTable(
 	},
 	(table) => [index('week_year_idx').on(table.weekYear)]
 )
+
+export type Event = typeof event.$inferInsert
