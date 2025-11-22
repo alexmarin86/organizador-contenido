@@ -1,36 +1,61 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## Como empezar
 
-## Getting Started
+Paso 1: Clona el repositorio y navega a la carpeta del proyecto
 
-First, run the development server:
+Paso 2: Instala las dependencias
+
+```bash
+npm install
+# o
+pnpm install
+```
+
+Paso 3: Inicia el servidor de desarrollo
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
+# o
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Paso 4: Inicia la base de datos Turso localmente
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run dev:db
+# o
+pnpm dev:db
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Abre [http://localhost:3000](http://localhost:3000) con tu navegador para ver el resultado.
 
-## Learn More
+## Variables de entorno
 
-To learn more about Next.js, take a look at the following resources:
+Crea un archivo `.env` en la raíz del proyecto y añade las siguientes variables de entorno:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```ts
+NODE_ENV = development
+TURSO_DATABASE_URL = 'http://localhost:8080'
+// para la base de datos local, puedes usar cualquier valor, aunque yo he usado "xd"
+// en producción, asegúrate de configurar este valor correctamente
+TURSO_AUTH_TOKEN = xd
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Scripts base de datos
 
-## Deploy on Vercel
+Cada vez que se realice un cambio en el esquema de la base de datos, es necesario ejecutar los dos primeros comandos para generar y aplicar las migraciones. Si quieres ver y gestionar la base de datos a través de una interfaz gráfica, puedes usar el tercer comando para abrir Drizzle Studio.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+npx drizzle:generate
+npx drizzle:migrate
+npx drizzle:studio
+# o
+pnpm drizzle:generate
+pnpm drizzle:migrate
+pnpm drizzle:studio
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Librerías utilizadas
+
+- ShadCN UI para los componentes de la interfaz de usuario.
+- Drizzle ORM para la gestión de la base de datos.
+- BetterAuth para la autenticación de usuarios.
