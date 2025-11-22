@@ -81,7 +81,7 @@ export const mockData: Event[] = [
 		description: 'Fun weekend TikTok clip to boost reach.',
 		platform: 'tiktok',
 		contentForm: 'short',
-		scheduledFor: 1764494400000,
+		scheduledFor: 1764148800000,
 		weekYear: '48/2025'
 	}
 ]

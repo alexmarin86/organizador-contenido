@@ -1,10 +1,10 @@
-import { DayCard } from '@/components/day-card'
+import { WeekGrid } from '@/components/week-grid'
 
 export default function Home() {
 	return (
-		<main className="container mx-auto">
+		<main className="container mx-auto space-y-8 py-8">
 			<h1>Organizador de contenidos</h1>
-			<DayCard weekDay="Lunes" className="max-w-3xs" />
+			<WeekGrid />
 		</main>
 	)
 }

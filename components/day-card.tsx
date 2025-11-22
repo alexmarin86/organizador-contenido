@@ -3,7 +3,18 @@ import type { Event } from '@/db/schema'
 import { Badge } from './ui/badge'
 import { Button } from './ui/button'
 import { PlusCircle } from 'lucide-react'
-import React from 'react'
+
+const getPlatformBrandColor = (platform: string): string => {
+	const platformColors: Record<string, string> = {
+		youtube: 'bg-red-600 hover:bg-red-700',
+		twitch: 'bg-purple-600 hover:bg-purple-700',
+		tiktok: 'bg-black hover:bg-gray-900'
+	}
+
+	return (
+		platformColors[platform.toLowerCase()] || 'bg-gray-500 hover:bg-gray-600'
+	)
+}
 
 type DayCardProps = {
 	weekDay: string
@@ -17,14 +28,21 @@ export function DayCard({ weekDay, events, className }: DayCardProps) {
 			<CardHeader>
 				<CardTitle className="text-center">{weekDay}</CardTitle>
 			</CardHeader>
-			<CardContent>
+			<CardContent className="space-y-2">
 				{events &&
 					events.map((event) => (
-						<div key={event.id}>
-							<h3 className="text-lg font-semibold">
-								{event.title}
-								<Badge className="ml-2">{event.platform}</Badge>
-							</h3>
+						<div
+							key={event.id}
+							className="border border-neutral-300 p-4  lg:p-2 rounded-sm bg-neutral-100"
+						>
+							<Badge
+								className={`ml-2 text-white border-0 ${getPlatformBrandColor(
+									event.platform
+								)}`}
+							>
+								{event.platform}
+							</Badge>
+							<p className="text-sm">{event.title}</p>
 						</div>
 					))}
 				{(!events || events.length === 0) && (
